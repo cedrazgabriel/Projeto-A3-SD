@@ -30,7 +30,8 @@ model Produto {
   valor       Decimal
   categoriaId String
 
-  categoria Categoria @relation(fields: [categoriaId], references: [id])
+  categoria Categoria   @relation(fields: [categoriaId], references: [id])
+  ItemVenda ItemVenda[]
 }
 
 model Estoque {
@@ -40,9 +41,21 @@ model Estoque {
 }
 
 model Venda {
-  id         String   @id @default(uuid())
+  id         String      @id @default(uuid())
   data       DateTime
   valorTotal Decimal
   clienteId  String
-  cliente    Cliente  @relation(fields: [clienteId], references: [id])
+  cliente    Cliente     @relation(fields: [clienteId], references: [id])
+  itens      ItemVenda[]
+}
+
+model ItemVenda {
+  id             String  @id @default(uuid())
+  quantidade     Int
+  vendaId        String
+  produtoId      String
+  valorProduto   Decimal
+  valorItemVenda Decimal
+  venda          Venda   @relation(fields: [vendaId], references: [id])
+  produto        Produto @relation(fields: [produtoId], references: [id])
 }

@@ -49,11 +49,22 @@ async function removerEstoque(produtoId) {
     return await estoqueRepository.removerEstoque(produtoId);
 }
 
+async function validarEstoque(produtos) {
+    for (const produto of produtos) {
+        const estoque = await estoqueRepository.getEstoqueByProdutoId(produto.produtoId);
+
+        if (!estoque || estoque.quantidade < produto.quantidade) {
+            throw new Error(`Estoque insuficiente para o produto ${produto.produtoId}`);
+        }
+    }
+}
+
 
 module.exports = {
     getAllEstoque,
     getEstoqueByProdutoId,
     adicionarEstoque,
     diminuirEstoque,
-    removerEstoque
+    removerEstoque,
+    validarEstoque
 }
