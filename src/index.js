@@ -6,6 +6,7 @@ const categoriaRoute = require('./routes/categoriaRoutes.js');
 const produtoRoute = require('./routes/produtoRoutes.js');
 const estoqueRoute = require('./routes/estoqueRoutes.js');
 const vendaRoute = require('./routes/vendaRoutes.js');
+const relatorioRoute = require('./routes/relatorioRoutes.js');
 
 
 const app = express();
@@ -21,6 +22,7 @@ app.use('/categorias', categoriaRoute);
 app.use('/produtos', produtoRoute);
 app.use('/estoque', estoqueRoute);
 app.use('/vendas', vendaRoute);
+app.use('/relatorios', relatorioRoute);
 
 
 // Inicie o servidor
