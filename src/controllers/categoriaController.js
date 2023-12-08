@@ -1,5 +1,6 @@
 const categoriaService = require('../services/categoriaService');
 
+
 async function getAllCategorias(req, res) {
     try {
         const categorias = await categoriaService.getAllCategorias();
@@ -17,11 +18,12 @@ async function getAllCategorias(req, res) {
 
 async function getCategoriaById(req, res) {
     try {
+
         const id = req.params.id;
         const categoria = await categoriaService.getCategoriaById(id);
 
         if (categoria === null) {
-            res.status(404).json({ msg: 'Categoria não encontrada' });
+            return res.status(404).json({ msg: 'Categoria não encontrada' });
         }
 
         res.json(categoria);
@@ -34,15 +36,16 @@ async function getCategoriaById(req, res) {
 
 async function createCategoria(req, res) {
     try {
+
         const categoria = req.body;
         const categoriaCriada = await categoriaService.createCategoria(categoria);
 
-        res.json(categoriaCriada);
-    }
-    catch (error) {
-        res.status(500).json({ error: error.message });
+        return res.json(categoriaCriada);
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
     }
 }
+
 
 async function updateCategoria(req, res) {
     try {
@@ -51,7 +54,7 @@ async function updateCategoria(req, res) {
         const categoriaAtualizada = await categoriaService.updateCategoria(id, categoria);
 
         if (categoriaAtualizada === null) {
-            res.status(404).json({ msg: 'Categoria não encontrada' });
+            return res.status(404).json({ msg: 'Categoria não encontrada' });
         }
 
         res.json(categoriaAtualizada);
@@ -67,7 +70,7 @@ async function deleteCategoria(req, res) {
         const categoriaDeletada = await categoriaService.deleteCategoria(id);
 
         if (categoriaDeletada === null) {
-            res.status(404).json({ msg: 'Categoria não encontrada' });
+            return res.status(404).json({ msg: 'Categoria não encontrada' });
         }
 
         res.json({ msg: 'Categoria deletada com sucesso' }).status(204);

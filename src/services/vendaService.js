@@ -36,7 +36,7 @@ async function calcularValorTotal(produtos) {
     const precosProdutos = await Promise.all(
         produtos.map(async (produto) => {
             const produtoInfo = await produtoService.getProdutoById(produto.produtoId);
-            const precoProduto = produtoInfo.valor; // Substitua pelo preço real do produto
+            const precoProduto = produtoInfo.valor;
             return precoProduto * produto.quantidade;
         })
     );

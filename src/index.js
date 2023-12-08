@@ -12,10 +12,9 @@ const relatorioRoute = require('./routes/relatorioRoutes.js');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Adicione o middleware express.json() para o tratamento de requisições com corpo em JSON
 app.use(express.json());
-
 app.use(cors());
+
 
 app.use('/clientes', clienteRoute);
 app.use('/categorias', categoriaRoute);
@@ -23,7 +22,6 @@ app.use('/produtos', produtoRoute);
 app.use('/estoque', estoqueRoute);
 app.use('/vendas', vendaRoute);
 app.use('/relatorios', relatorioRoute);
-
 
 // Inicie o servidor
 app.listen(port, () => {

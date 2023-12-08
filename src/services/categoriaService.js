@@ -1,16 +1,11 @@
 
 const categoriaRepository = require('../repositories/categoriaRepository');
-const categoriaRoutes = require('../routes/categoriaRoutes');
 
 async function getAllCategorias() {
     return await categoriaRepository.getAllCategorias();
 }
 
 async function createCategoria(categoria) {
-    if (!categoria.descricao) {
-        res.status(400).json('Descrição da categoria é obrigatório');
-    }
-
     return await categoriaRepository.createCategoria(categoria);
 }
 
