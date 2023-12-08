@@ -5,7 +5,7 @@ async function getAllClientes(req, res) {
         const clientes = await clienteService.getAllClientes();
 
         if (clientes.length === 0) {
-            res.status(404).json('Nenhum cliente encontrado');
+            return res.status(404).json('Nenhum cliente encontrado');
         }
 
         res.json(clientes);
@@ -20,7 +20,7 @@ async function getClienteById(req, res) {
         const cliente = await clienteService.getClienteById(id);
 
         if (cliente === null) {
-            res.status(404).json({ msg: 'Cliente não encontrado' });
+            return res.status(404).json({ msg: 'Cliente não encontrado' });
         }
 
         res.json(cliente);
@@ -49,7 +49,7 @@ async function updateCliente(req, res) {
         const clienteAtualizado = await clienteService.updateCliente(id, cliente);
 
         if (clienteAtualizado === null) {
-            res.status(404).json('Cliente não encontrado');
+            return res.status(404).json('Cliente não encontrado');
         }
 
         res.json(clienteAtualizado);
@@ -65,7 +65,7 @@ async function deleteCliente(req, res) {
         const clienteDeletado = await clienteService.deleteCliente(id);
 
         if (clienteDeletado === null) {
-            res.status(404).json({ msg: 'Cliente não encontrado' });
+            return res.status(404).json({ msg: 'Cliente não encontrado' });
         }
 
         res.json({ msg: 'Cliente deletado com sucesso' }).status(204);
