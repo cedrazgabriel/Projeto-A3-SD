@@ -1,16 +1,17 @@
-import express from 'express';
-// import swaggerUi from 'swagger-ui-express';
-// import swaggerDocument from './swagger.json' assert { type: 'json' };
+const express = require('express');
+const cors = require('cors');
+const clienteRoute = require('./routes/clienteRoutes.js');
 
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
+// Adicione o middleware express.json() para o tratamento de requisições com corpo em JSON
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
+app.use(cors());
+
+app.use('/clientes', clienteRoute);
 
 // Inicie o servidor
 app.listen(port, () => {
