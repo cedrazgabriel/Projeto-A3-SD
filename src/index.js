@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const clienteRoute = require('./routes/clienteRoutes.js');
+const categoriaRoute = require('./routes/categoriaRoutes.js');
 
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/clientes', clienteRoute);
+app.use('/categorias', categoriaRoute);
 
 // Inicie o servidor
 app.listen(port, () => {
