@@ -5,7 +5,7 @@ async function getAllProdutos(req, res) {
         const produtos = await produtoService.getAllProdutos();
 
         if (produtos.length === 0) {
-            res.status(404).json({ msg: 'Nenhum produto encontrado' });
+            return res.status(404).json({ msg: 'Nenhum produto encontrado' });
         }
 
         res.json(produtos);
@@ -21,7 +21,7 @@ async function getProdutoById(req, res) {
         const produto = await produtoService.getProdutoById(id);
 
         if (produto === null) {
-            res.status(404).json({ msg: 'Produto não encontrado' });
+            return res.status(404).json({ msg: 'Produto não encontrado' });
         }
 
         res.json(produto);
@@ -51,7 +51,7 @@ async function updateProduto(req, res) {
         const produtoAtualizado = await produtoService.updateProduto(id, produto);
 
         if (produtoAtualizado === null) {
-            res.status(404).json({ msg: 'Produto não encontrado' });
+            return res.status(404).json({ msg: 'Produto não encontrado' });
         }
 
         res.json(produtoAtualizado);
@@ -67,7 +67,7 @@ async function deleteProduto(req, res) {
         const produtoDeletado = await produtoService.deleteProduto(id);
 
         if (produtoDeletado === null) {
-            res.status(404).json({ msg: 'Produto não encontrado' });
+            return res.status(404).json({ msg: 'Produto não encontrado' });
         }
 
         res.json({ msg: 'Produto deletado com sucesso' }).status(204);

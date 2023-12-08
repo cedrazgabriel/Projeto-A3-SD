@@ -6,7 +6,7 @@ async function getAllEstoque(req, res) {
         const estoqueGeral = await estoqueService.getAllEstoque();
 
         if (estoqueGeral.length === 0) {
-            res.json({ msg: 'O estoque está vazio' });
+            return res.json({ msg: 'O estoque está vazio' });
         }
 
         res.json(estoqueGeral);
@@ -24,13 +24,13 @@ async function getEstoqueByProdutoId(req, res) {
         const produto = await produtoService.getProdutoById(id);
 
         if (produto === null) {
-            res.status(404).json({ msg: 'Produto não encontrado' });
+            return res.status(404).json({ msg: 'Produto não encontrado' });
         }
 
         const estoque = await estoqueService.getEstoqueByProdutoId(id);
 
         if (estoque === null) {
-            res.json({ msg: `O produto ${produto.descricao} não tem estoque!` });
+            return res.json({ msg: `O produto ${produto.descricao} não tem estoque!` });
         }
 
         res.json(estoque);
