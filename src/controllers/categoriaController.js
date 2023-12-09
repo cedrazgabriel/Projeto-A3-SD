@@ -40,7 +40,7 @@ async function createCategoria(req, res) {
         const categoria = req.body;
         const categoriaCriada = await categoriaService.createCategoria(categoria);
 
-        return res.json(categoriaCriada);
+        return res.json(categoriaCriada).status(201);
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
